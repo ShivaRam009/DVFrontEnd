@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 8.1fr 1fr; /* 1/5 and 4/5 fractions */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sidebar {
+  padding: 20px;
+  background-color: #f0f0f0;
+  /* You can add additional styles for the sidebar here */
+  width: 150px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar button {
+  margin: 10px;
+  width: 100px;
+  margin-left: 23px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.dash {
+  background-color: #f0f0f0;
 }
+.filters {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+.filters select {
+  margin: 10px;
+  width: 150px;
+  /* center button */
+    margin-left: auto;
+    margin-right: auto;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+/* for first h1 tag */
+h1:first-of-type {
+  text-align: center;
+  background-color: white;
+    padding: 15px;
+}
+h1,h3 {
+  text-align: center;
+}
+.charts{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
 }
