@@ -12,11 +12,8 @@ const BarchartByCountry = ({ data }) => {
         }
       }
     }
-    // Convert object to array
     const countryArray = Object.entries(countryData);
-    // console.log(countryArray); 
   
-    // Chart dimensions
     const margin = { top: 60, right: 30, bottom: 60, left: 60 };
     const width = 1500 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
@@ -38,7 +35,6 @@ const BarchartByCountry = ({ data }) => {
         .range([height, 0])
         .domain([0, d3.max(countryArray, (d) => d[1])]);
   
-      // Create bars
       chart.selectAll(".bar")
         .data(countryArray)
         .enter().append("rect")
@@ -48,12 +44,10 @@ const BarchartByCountry = ({ data }) => {
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - yScale(d[1]));
   
-      // Add x-axis
       chart.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(xScale));
   
-      // Add y-axis
       chart.append("g")
         .call(d3.axisLeft(yScale));
     }, [data, height, countryArray, margin.left, margin.top, width]);

@@ -11,7 +11,7 @@ import BarchartByRegion from './BarchartByRegion';
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [originalData, setOriginalData] = useState([]); // for filters  
+  const [originalData, setOriginalData] = useState([]);
   const [activeComponent, setActiveComponent] = useState(null);
 
   useEffect(() => {
@@ -24,7 +24,6 @@ const App = () => {
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-      // all distinct citys
 
       const citys = [...new Set(data.map((d) => d.city))];
       console.log(citys);
@@ -35,7 +34,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // Set a default chart when data is available
     if (data.length >= 0) {
       setActiveComponent(<BarchartIntensity data={data} />);
     }
@@ -46,7 +44,6 @@ const App = () => {
   };
 
   const selectfilters = async () => {
-    <BarchartIntensity data={[]} />
     const endYear = document.getElementById('endYearSelect').value;
     const topics = document.getElementById('topicsSelect').value;
     const categories = document.getElementById('categoriesSelect').value;
@@ -54,30 +51,32 @@ const App = () => {
     const country = document.getElementById('countrySelect').value;
 
     console.log(endYear, topics, categories, regions, country);
-    let currdata=await originalData;
-    console.log(currdata);
-    if(endYear !==""){
+    let currdata = await originalData;
+
+    if (endYear !== "") {
       setData(currdata.filter((d) => d.end_year === endYear));
-      
     }
-    if(topics !==""){
+    if (topics !== "") {
       setData(currdata.filter((d) => d.topic === topics));
     }
-    
-    if(categories!==""){
+
+    if (categories !== "") {
       setData(currdata.filter((d) => d.sector === categories));
     }
 
-    if(regions!==""){
-      setData(currdata.filter((d) => d.region === regions)); 
+    if (regions !== "") {
+      setData(currdata.filter((d) => d.region === regions));
     }
 
-    if(country!==""){
+    if (country !== "") {
       setData(currdata.filter((d) => d.country === country));
     }
-    console.log(await data);
-    
-  }
+  };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]); 
+
   return (
     <div className='container'>
       <div className='sidebar'>

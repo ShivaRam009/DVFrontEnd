@@ -4,7 +4,6 @@ import * as d3 from "d3";
 const BarchartByTopic = ({ data }) => {
     const topicData = {};
   
-    // Filter out empty topic values and count occurrences
     data.forEach((item) => {
       const topic = item.topic;
       if (topic !== "") {
@@ -16,7 +15,6 @@ const BarchartByTopic = ({ data }) => {
       }
     });
   
-    // Convert object to array
     const topicArray = Object.entries(topicData);
   
     const margin = { top: 60, right: 30, bottom: 60, left: 60 };
@@ -33,14 +31,13 @@ const BarchartByTopic = ({ data }) => {
   
       const xScale = d3.scaleBand()
         .range([0, width])
-        .domain(topicArray.map((s, index) => index + 1)) // Assuming topics are unique, use index + 1 as the x-axis values
+        .domain(topicArray.map((s, index) => index + 1))
         .padding(0.4);
   
       const yScale = d3.scaleLinear()
         .range([height, 0])
         .domain([0, d3.max(topicArray, (d) => d[1])]);
   
-      // Create bars
       chart.selectAll(".bar")
         .data(topicArray)
         .enter().append("rect")
@@ -50,12 +47,10 @@ const BarchartByTopic = ({ data }) => {
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - yScale(d[1]));
   
-      // Add x-axis with numeric labels
       chart.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); // Use d3.format("d") to format as integers
+        .call(d3.axisBottom(xScale).tickFormat(d3.format("d")));
   
-      // Add y-axis
       chart.append("g")
         .call(d3.axisLeft(yScale));
     }, [data, height, topicArray, margin.left, margin.top, width]);

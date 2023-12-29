@@ -5,7 +5,6 @@ const BarchartRelevance = ({ data }) => {
     const relevanceData = [];
   
   
-    // Aggregate relevance values according to end year
     for (let i = 0; i < data.length; i++) {
       if (data[i].end_year !== "") {
         if (data[i].end_year in relevanceData) {
@@ -15,7 +14,6 @@ const BarchartRelevance = ({ data }) => {
         }
       }
     }
-    // Convert object to array
     const relevanceArray = Object.entries(relevanceData);
   
     const margin = { top: 60, right: 30, bottom: 60, left: 60 };
@@ -39,7 +37,6 @@ const BarchartRelevance = ({ data }) => {
         .range([height, 0])
         .domain([0, d3.max(relevanceArray, (d) => d[1])]);
   
-      // Create bars
       chart.selectAll(".bar")
         .data(relevanceArray)
         .enter().append("rect")
@@ -49,12 +46,10 @@ const BarchartRelevance = ({ data }) => {
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - yScale(d[1]));
   
-      // Add x-axis
       chart.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(xScale));
   
-      // Add y-axis
       chart.append("g")
         .call(d3.axisLeft(yScale));
     }, [data, height, relevanceArray, margin.left, margin.top, width]);

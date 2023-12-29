@@ -4,7 +4,6 @@ import * as d3 from "d3";
 const BarchartByRegion = ({ data }) => {
     const regionData = {};
   
-    // Filter out empty region values and count occurrences
     data.forEach((item) => {
       const region = item.region;
       if (region !== "") {
@@ -16,7 +15,6 @@ const BarchartByRegion = ({ data }) => {
       }
     });
   
-    // Convert object to array
     const regionArray = Object.entries(regionData);
   
     const margin = { top: 60, right: 30, bottom: 60, left: 60 };
@@ -33,14 +31,13 @@ const BarchartByRegion = ({ data }) => {
   
       const xScale = d3.scaleBand()
         .range([0, width])
-        .domain(regionArray.map((s, index) => index + 1)) // Assuming regions are unique, use index + 1 as the x-axis values
+        .domain(regionArray.map((s, index) => index + 1))
         .padding(0.4);
   
       const yScale = d3.scaleLinear()
         .range([height, 0])
         .domain([0, d3.max(regionArray, (d) => d[1])]);
   
-      // Create bars
       chart.selectAll(".bar")
         .data(regionArray)
         .enter().append("rect")
@@ -50,12 +47,10 @@ const BarchartByRegion = ({ data }) => {
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - yScale(d[1]));
   
-      // Add x-axis with numeric labels
       chart.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); // Use d3.format("d") to format as integers
+        .call(d3.axisBottom(xScale).tickFormat(d3.format("d"))); 
   
-      // Add y-axis
       chart.append("g")
         .call(d3.axisLeft(yScale));
     },

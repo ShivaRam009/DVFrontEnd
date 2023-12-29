@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 const BarchartIntensity = ({ data }) => {
     const intensityData = {};
   
-    // Aggregate intensity values according to end year
     data.forEach((item) => {
       if (item.end_year in intensityData) {
         intensityData[item.end_year] += item.intensity;
@@ -15,10 +14,8 @@ const BarchartIntensity = ({ data }) => {
       }
     });
     delete intensityData[""];
-    // Convert object to array
     const intensityArray = Object.entries(intensityData);
   
-    // Chart dimensions
     const margin = { top: 60, right: 30, bottom: 60, left: 60 };
     const width = 1000 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
@@ -40,7 +37,6 @@ const BarchartIntensity = ({ data }) => {
         .range([height, 0])
         .domain([0, d3.max(intensityArray, (d) => d[1])]);
   
-      // Create bars
       chart.selectAll(".bar")
         .data(intensityArray)
         .enter().append("rect")
@@ -50,12 +46,10 @@ const BarchartIntensity = ({ data }) => {
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - yScale(d[1]));
   
-      // Add x-axis
       chart.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(xScale));
   
-      // Add y-axis
       chart.append("g")
         .call(d3.axisLeft(yScale));
     }, [data, height, intensityArray, margin.left, margin.top, width]);

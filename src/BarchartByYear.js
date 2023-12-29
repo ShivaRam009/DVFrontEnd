@@ -12,11 +12,8 @@ const BarchartByYear = ({ data }) => {
         }
       }
     }
-    // Convert object to array
     const yearArray = Object.entries(yearData);
-    // console.log(yearArray); 
   
-    // Chart dimensions
     const margin = { top: 60, right: 30, bottom: 60, left: 60 };
     const width = 1000 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
@@ -38,7 +35,6 @@ const BarchartByYear = ({ data }) => {
         .range([height, 0])
         .domain([0, d3.max(yearArray, (d) => d[1])]);
   
-      // Create bars
       chart.selectAll(".bar")
         .data(yearArray)
         .enter().append("rect")
@@ -48,12 +44,10 @@ const BarchartByYear = ({ data }) => {
         .attr("width", xScale.bandwidth())
         .attr("height", (d) => height - yScale(d[1]));
   
-      // Add x-axis
       chart.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(xScale));
   
-      // Add y-axis
       chart.append("g")
         .call(d3.axisLeft(yScale));
     }, [data, height, yearArray, margin.left, margin.top, width]);
