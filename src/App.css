@@ -1,51 +1,127 @@
+/* Container layout */
 .container {
+    overflow-x: auto; 
+  
   display: grid;
-  grid-template-columns: 1fr 8.1fr 1fr;
+  grid-template-columns: 1fr 8fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f3f4f6;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
+/* Sidebar styling */
 .sidebar {
   padding: 20px;
-  background-color: #f0f0f0;
-  
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 150px;
 }
+
 .sidebar button {
-  margin: 10px;
-  width: 100px;
-  margin-left: 23px;
+  margin: 10px 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+.sidebar button:hover {
+  background-color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* Main content styling */
 .main {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
+
 .dash {
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.filters {
+
+.filters-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  background-color: #f0f0f0;
+  gap: 20px;
 }
-.filters select {
-  margin: 10px;
-  width: 150px;
-    margin-left: auto;
-    margin-right: auto;
 
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 10px;
 }
+
+.filters select {
+  margin: 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #1f2937;
+  transition: border-color 0.3s ease;
+}
+
+.filters select:focus {
+  border-color: #3b82f6;
+}
+
+/* Typography */
 h1:first-of-type {
   text-align: center;
-  background-color: white;
-    padding: 15px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+
+  margin-bottom: 0; /* Changed margin-bottom to 0 */
+  color: #1f2937;
 }
-h1,h3 {
+
+h1, h3 {
   text-align: center;
+  color: #1f2937;
 }
-.charts{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
+
+/* Charts section styling */
+.charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+* {
+  box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
 }
